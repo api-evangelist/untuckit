@@ -1,0 +1,48 @@
+generated: '2026-07-21'
+method: searched
+source: >-
+  Live probes of untuckit.com well-known documents (OIDC discovery, RFC 8414
+  authorization-server metadata, UCP merchant profile) and the published
+  agents.md / llms.txt agent instructions.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      Live RFC 8414 authorization-server metadata at
+      /.well-known/oauth-authorization-server (saved at
+      well-known/untuckit-oauth-authorization-server.json);
+      authorization_code + refresh_token + jwt-bearer grants with PKCE S256.
+  - id: oidc
+    conforms: true
+    evidence: >-
+      Live OIDC discovery at /.well-known/openid-configuration (issuer
+      https://shopify.com/authentication/1291072); RS256 id_tokens, standard
+      claims, end_session endpoint.
+  - id: pkce
+    conforms: true
+    evidence: code_challenge_methods_supported includes S256 in both discovery documents.
+  - id: ucp
+    conforms: true
+    evidence: >-
+      Universal Commerce Protocol merchant profile served at /.well-known/ucp
+      declaring shopping service versions 2026-04-08 and 2026-01-23 with MCP
+      transport, checkout/fulfillment/discount/cart/order/catalog capabilities
+      and Google Pay / Shopify card / Shop Pay payment handlers.
+  - id: mcp
+    conforms: true
+    evidence: >-
+      Live JSON-RPC MCP endpoint at https://www.untuckit.com/api/ucp/mcp
+      (probed 2026-07-21; answers JSON-RPC with UCP agent-profile handshake
+      requirement); schema published as OpenRPC at ucp.dev.
+  - id: rfc9457
+    conforms: false
+    evidence: >-
+      No application/problem+json surface observed; the MCP endpoint returns
+      JSON-RPC 2.0 error objects and the storefront returns Shopify HTML/JSON
+      errors.
+  - id: idempotency
+    conforms: false
+    evidence: No Idempotency-Key or equivalent replay-safety mechanism documented in agents.md or the UCP profile for this store.
+  - id: fapi
+    conforms: false
+    evidence: No FAPI conformance claims published; consumer-commerce OAuth profile only.

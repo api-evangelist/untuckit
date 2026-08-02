@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+source: https://untuckit.com/.well-known/openid-configuration
+docs: https://shopify.dev/docs/api/customer
+description: >-
+  OAuth 2.0 / OIDC scopes published in the storefront's live OIDC discovery
+  document (issuer https://shopify.com/authentication/1291072, saved at
+  well-known/untuckit-openid-configuration.json). These are the Shopify
+  Customer Account API scopes for the UNTUCKit store; the mcp scope grants
+  customer-context access to the store's UCP/MCP agent-commerce endpoint.
+authorization_server: https://account.untuckit.com/authentication/oauth/authorize
+token_endpoint: https://account.untuckit.com/authentication/oauth/token
+scopes:
+  - scope: openid
+    description: OpenID Connect authentication; returns an id_token identifying the customer.
+  - scope: email
+    description: Access to the customer's email address and verification status claims.
+  - scope: customer-account-api:full
+    description: Full access to the Shopify Customer Account API for this store (orders, profile, addresses) on behalf of the signed-in customer.
+  - scope: customer-account-mcp-api:full
+    description: Full access to the customer-account MCP API, allowing agents to act with customer context against the store's MCP endpoint.

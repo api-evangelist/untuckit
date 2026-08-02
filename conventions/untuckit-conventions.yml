@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.untuckit.com/agents.md
+description: >-
+  Cross-cutting conventions for the UNTUCKit storefront agent surface, taken
+  from the store's published agents.md / llms.txt and robots.txt agent
+  instructions. Cross-links: authentication/untuckit-authentication.yml,
+  scopes/untuckit-scopes.yml, mcp/untuckit-mcp.yml,
+  lifecycle/untuckit-lifecycle.yml.
+auth:
+  style: >-
+    Anonymous for read-only catalog JSON; UCP agent-profile handshake for the
+    MCP endpoint; Shopify Customer Account OAuth 2.0 (PKCE S256) for
+    customer-context access. See authentication/untuckit-authentication.yml.
+transaction_rules:
+  buyer_approval: >-
+    Checkout requires human approval: agents must not complete payment
+    without explicit, contemporaneous buyer consent (stated in agents.md and
+    robots.txt). Agents that cannot obtain approval are directed to the Shop
+    skill (https://shop.app/SKILL.md) and Shop Pay.
+request_context:
+  parameters:
+    - context.address_country
+    - context.currency
+  purpose: accurate pricing and availability per buyer locale
+rate_limits:
+  signaling: HTTP 429 on the MCP endpoint, rate-limited per IP; agents are instructed to back off on 429.
+idempotency:
+  supported: false
+  evidence: No idempotency mechanism documented for this store's agent surface.
+pagination:
+  style: >-
+    Read-only catalog JSON follows Shopify storefront conventions
+    (/collections/{handle}/products.json); no store-specific pagination
+    contract is documented in agents.md.
+errors:
+  envelope: >-
+    JSON-RPC 2.0 error objects on the MCP endpoint (observed live as code
+    -32001 with data.code/data.content/data.continue_url).
+versioning:
+  scheme: date-based UCP protocol versions declared in /.well-known/ucp; see lifecycle/untuckit-lifecycle.yml.

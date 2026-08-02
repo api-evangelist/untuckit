@@ -1,0 +1,22 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.untuckit.com/.well-known/ucp
+description: >-
+  Lifecycle signals published by the UNTUCKit storefront's agent-commerce
+  surface. Versioning is date-based at the UCP protocol level and advertised
+  in the merchant profile; each supported version resolves to its own
+  versioned profile URL. No status page, SLA, or deprecation policy is
+  published by UNTUCKit itself (the surface rides Shopify's platform
+  lifecycle).
+versioning:
+  scheme: date-based (UCP protocol versions)
+  current: '2026-04-08'
+  supported:
+    - version: '2026-04-08'
+      profile: https://untuckit.myshopify.com/.well-known/ucp/2026-04-08
+      note: latest stable per llms.txt
+    - version: '2026-01-23'
+      profile: https://untuckit.myshopify.com/.well-known/ucp/2026-01-23
+deprecation_policy: none published
+status_page: none published
+sla: none published

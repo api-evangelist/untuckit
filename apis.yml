@@ -1,8 +1,28 @@
 aid: untuckit
-name: Untuckit
-description: Untuckit is a company surfaced as a portfolio company of bond-capital and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+name: UNTUCKit
+description: >-
+  UNTUCKit is a US apparel brand and omnichannel retailer best known for
+  shirts designed to be worn untucked, selling menswear and womenswear through
+  untuckit.com and its retail stores. Its Shopify-powered storefront is
+  notably agent-ready: the store publishes agents.md and llms.txt operating
+  instructions, a Universal Commerce Protocol (UCP) merchant profile at
+  /.well-known/ucp, a live MCP endpoint at /api/ucp/mcp for catalog search,
+  cart, and buyer-approved checkout, OIDC/OAuth discovery for the Shopify
+  Customer Account API, and unauthenticated product and collection JSON.
 url: https://raw.githubusercontent.com/api-evangelist/untuckit/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://avatars.githubusercontent.com/u/48734252?v=4
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,10 +31,49 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Apparel
+- Retail
+- eCommerce
+- Shopify
+- Agentic Commerce
+- MCP
+- UCP
+apis:
+- name: UNTUCKit Storefront Agent Commerce (UCP/MCP) API
+  description: >-
+    Live MCP endpoint implementing the Universal Commerce Protocol shopping
+    service for the UNTUCKit store: catalog search, cart, checkout,
+    fulfillment, discounts, and orders, with Shop Pay / Google Pay / card
+    payment handlers and a hard buyer-approval rule on payment. Discovered via
+    /.well-known/ucp; schema published as OpenRPC at ucp.dev.
+  humanURL: https://www.untuckit.com/agents.md
+  baseURL: https://www.untuckit.com/api/ucp/mcp
+  tags:
+  - Agentic Commerce
+  - MCP
+  - UCP
+  - Checkout
+  properties:
+  - type: Documentation
+    url: https://www.untuckit.com/agents.md
+- name: UNTUCKit Storefront Catalog JSON API
+  description: >-
+    Unauthenticated read-only Shopify storefront JSON documented in the
+    store's agents.md: product JSON at /products/{handle}.json, collection
+    product listings at /collections/{handle}/products.json, product search at
+    /search?q={query}&type=product, and sitemap.xml for store metadata.
+  humanURL: https://www.untuckit.com/agents.md
+  baseURL: https://www.untuckit.com
+  tags:
+  - Products
+  - Catalog
+  - eCommerce
+  properties:
+  - type: Documentation
+    url: https://www.untuckit.com/agents.md
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +82,38 @@ maintainers:
 common:
 - type: Website
   url: https://untuckit.com
+- type: MCPServer
+  url: mcp/untuckit-mcp.yml
+- type: LLMsTxt
+  url: llms/untuckit-llms.txt
+- type: WellKnown
+  url: well-known/untuckit-well-known.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: OAuthScopes
+  url: scopes/untuckit-scopes.yml
+- type: Authentication
+  url: authentication/untuckit-authentication.yml
+- type: Conformance
+  url: conformance/untuckit-conformance.yml
+- type: Conventions
+  url: conventions/untuckit-conventions.yml
+- type: Lifecycle
+  url: lifecycle/untuckit-lifecycle.yml
+- type: DomainSecurity
+  url: security/untuckit-domain-security.yml
+- type: PrivacyPolicy
+  url: https://www.untuckit.com/policies/privacy-policy
+- type: TermsOfService
+  url: https://www.untuckit.com/policies/terms-of-service
+- type: Support
+  url: https://www.untuckit.com/pages/contact-us
+- type: Blog
+  url: https://www.untuckit.com/blogs/news
+- type: Login
+  url: https://www.untuckit.com/account/login
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 14
+  pass: local-v1

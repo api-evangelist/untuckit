@@ -1,0 +1,52 @@
+generated: '2026-07-21'
+method: searched
+source: https://untuckit.com/.well-known/oauth-authorization-server
+docs: https://www.untuckit.com/agents.md
+description: >-
+  Authentication profile for the UNTUCKit storefront's agent and customer
+  surfaces, taken verbatim from the store's live RFC 8414 authorization-server
+  metadata and OIDC discovery documents (saved under well-known/). Customer
+  identity is Shopify Customer Accounts (issuer
+  https://shopify.com/authentication/1291072) fronted at account.untuckit.com.
+schemes:
+  - name: customer-account-oauth
+    type: oauth2
+    description: >-
+      OAuth 2.0 + OIDC for the Shopify Customer Account API and the
+      customer-context MCP API. Authorization-code flow with PKCE (S256),
+      refresh tokens, and JWT-bearer grant; client_secret_basic at the token
+      endpoint; RS256 id_tokens.
+    flows:
+      authorizationCode:
+        authorizationUrl: https://account.untuckit.com/authentication/oauth/authorize
+        tokenUrl: https://account.untuckit.com/authentication/oauth/token
+        scopes:
+          openid: OpenID Connect authentication
+          email: Customer email claims
+          customer-account-api:full: Full customer-account API access
+          customer-account-mcp-api:full: Customer-context MCP API access
+    grant_types:
+      - authorization_code
+      - refresh_token
+      - urn:ietf:params:oauth:grant-type:jwt-bearer
+    pkce: S256
+    token_endpoint_auth_methods:
+      - client_secret_basic
+    jwks_uri: https://account.untuckit.com/authentication/.well-known/jwks.json
+    end_session_endpoint: https://account.untuckit.com/authentication/logout
+  - name: ucp-agent-profile
+    type: custom
+    description: >-
+      The UCP/MCP endpoint (https://www.untuckit.com/api/ucp/mcp) gates
+      requests on the Universal Commerce Protocol agent-profile handshake: a
+      live tools/list probe without a profile URI returns JSON-RPC error
+      -32001 invalid_profile_url. Payment completion additionally requires
+      explicit buyer approval (Shop Pay / Google Pay / card handlers declared
+      in well-known/untuckit-ucp.json).
+  - name: anonymous-read
+    type: none
+    description: >-
+      Read-only storefront data requires no authentication: product and
+      collection JSON (/products/{handle}.json,
+      /collections/{handle}/products.json), search, and sitemap, as documented
+      in agents.md.

@@ -1,0 +1,60 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://www.untuckit.com/agents.md
+description: >-
+  UNTUCKit's Shopify storefront operates a live, first-party-hosted MCP
+  endpoint as the transport for the Universal Commerce Protocol (UCP) shopping
+  service. The endpoint, its OpenRPC schema, and the agent flow are published
+  in the store's agents.md / llms.txt and advertised in the UCP merchant
+  profile at /.well-known/ucp (saved at well-known/untuckit-ucp.json). A live
+  POST tools/list probe on 2026-07-21 answered with a JSON-RPC UCP-discovery
+  error requiring an agent profile URI, confirming the endpoint is live and
+  gated on the UCP agent-profile handshake.
+server:
+  name: untuckit-storefront-ucp
+  transport: http
+  url: https://www.untuckit.com/api/ucp/mcp
+  canonical_url: https://untuckit.myshopify.com/api/ucp/mcp
+  protocol: UCP shopping service over MCP (JSON-RPC, Content-Type application/json)
+  schema: https://ucp.dev/2026-04-08/services/shopping/mcp.openrpc.json
+  discovery: https://www.untuckit.com/.well-known/ucp
+  auth: >-
+    UCP agent-profile handshake; customer-scoped access via Shopify Customer
+    Account OAuth (scope customer-account-mcp-api:full, see
+    well-known/untuckit-openid-configuration.json). Payment completion always
+    requires explicit buyer approval.
+  rate_limits: Rate-limited per IP; agents are told to back off on 429.
+  versions:
+    - '2026-04-08'
+    - '2026-01-23'
+capabilities:
+  - dev.ucp.shopping.catalog.search
+  - dev.ucp.shopping.catalog.lookup
+  - dev.ucp.shopping.cart
+  - dev.ucp.shopping.checkout
+  - dev.ucp.shopping.fulfillment
+  - dev.ucp.shopping.discount
+  - dev.ucp.shopping.order
+  - dev.shopify.catalog
+payment_handlers:
+  - com.google.pay
+  - dev.shopify.card
+  - dev.shopify.shop_pay
+tools:
+  - name: search_catalog
+    description: Search the store catalog for products matching the buyer's intent.
+  - name: create_cart
+    description: Create a cart and add desired items.
+  - name: create_checkout
+    description: Start the purchase flow for a cart.
+  - name: update_checkout
+    description: Set shipping address and shipping method on a checkout.
+  - name: complete_checkout
+    description: Finalize the purchase; the buyer must approve payment.
+notes: >-
+  Tool names are the documented agent flow published verbatim in agents.md;
+  the authoritative machine-readable tool schemas come from MCP tools/list
+  after the UCP agent-profile handshake. The store also recommends the
+  cross-store Shopify Shop skill (https://shop.app/SKILL.md) for personal
+  shopping agents.

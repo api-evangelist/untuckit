@@ -1,0 +1,49 @@
+generated: '2026-07-21'
+method: searched
+source: live HTTP probes of untuckit.com / www.untuckit.com
+description: >-
+  Results of probing the /.well-known/ (and agent-discovery) surface of the
+  UNTUCKit Shopify storefront. Status is the HTTP code observed at fetch time.
+  Documents that returned a real, correctly-typed payload were saved verbatim
+  alongside this index. The storefront publishes OIDC discovery and OAuth 2.0
+  authorization-server metadata (Shopify Customer Account API, issuer
+  shopify.com/authentication/1291072) plus a Universal Commerce Protocol (UCP)
+  merchant profile that advertises a live MCP endpoint at /api/ucp/mcp.
+hosts:
+  - host: https://untuckit.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 200
+        type: application/json
+        file: untuckit-openid-configuration.json
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        type: application/json
+        file: untuckit-oauth-authorization-server.json
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/ucp
+        status: 200
+        type: application/json
+        file: untuckit-ucp.json
+        note: Universal Commerce Protocol merchant profile (versions 2026-04-08, 2026-01-23)
+      - path: /llms.txt
+        status: 200
+        type: text/plain
+        file: ../llms/untuckit-llms.txt
+      - path: /agents.md
+        status: 200
+        type: text/markdown
+        file: ../skills/untuckit-agents.md
+      - path: /robots.txt
+        status: 200
+        note: >-
+          Shopify robots.txt carrying agent instructions: points agents at
+          /agents.md, /.well-known/ucp and /api/ucp/mcp; forbids scripted
+          checkout without contemporaneous human approval.

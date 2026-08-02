@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.untuckit.com/agents.md
+description: >-
+  Provider-published agent operating instructions for the UNTUCKit
+  storefront, saved verbatim. The store publishes its own agents.md (mirrored
+  at /llms.txt) describing the UCP/MCP agent-commerce flow, and recommends the
+  cross-store Shopify Shop skill for personal shopping agents.
+skills:
+  - file: untuckit-agents.md
+    name: untuckit-agent-commerce
+    title: UNTUCKit storefront agent instructions (agents.md)
+    published_at: https://www.untuckit.com/agents.md
+    description: >-
+      Verbatim provider-published instructions: UCP discovery at
+      /.well-known/ucp, MCP endpoint at /api/ucp/mcp, the
+      search_catalog -> create_cart -> create_checkout -> update_checkout ->
+      complete_checkout flow, buyer-approval and rate-limit rules, and the
+      unauthenticated read-only catalog JSON endpoints.
+external:
+  - name: shop-skill
+    url: https://shop.app/SKILL.md
+    description: >-
+      Cross-store Shopify Shop skill the store recommends for personal
+      shopping agents (Shop Pay checkout with buyer approval, order tracking).
+      Published by Shopify, not UNTUCKit; referenced, not vendored.
