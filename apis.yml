@@ -36,6 +36,15 @@ tags:
 - Company
 - Apparel
 - Retail
+- E-Commerce
+- Shopify
+- Agentic Commerce
+- MCP
+- UCP
+tags_raw:
+- Company
+- Apparel
+- Retail
 - eCommerce
 - Shopify
 - Agentic Commerce
@@ -68,6 +77,10 @@ apis:
   humanURL: https://www.untuckit.com/agents.md
   baseURL: https://www.untuckit.com
   tags:
+  - Product
+  - Catalog
+  - E-Commerce
+  tags_raw:
   - Products
   - Catalog
   - eCommerce
