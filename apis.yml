@@ -51,7 +51,7 @@ tags:
 - Shopify
 - Agentic Commerce
 - MCP
-- UCP
+- Universal Commerce Protocol
 tags_raw:
 - Company
 - Apparel
@@ -72,6 +72,11 @@ apis:
   humanURL: https://www.untuckit.com/agents.md
   baseURL: https://www.untuckit.com/api/ucp/mcp
   tags:
+  - Agentic Commerce
+  - MCP
+  - Universal Commerce Protocol
+  - Checkout
+  tags_raw:
   - Agentic Commerce
   - MCP
   - UCP
