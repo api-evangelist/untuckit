@@ -84,6 +84,9 @@ apis:
   properties:
   - type: Documentation
     url: https://www.untuckit.com/agents.md
+  x-surface: platform-generated
+  x-platform: shopify
+  x-platform-surface: ucp
 - name: UNTUCKit Storefront Catalog JSON API
   description: >-
     Unauthenticated read-only Shopify storefront JSON documented in the
@@ -91,7 +94,6 @@ apis:
     product listings at /collections/{handle}/products.json, product search at
     /search?q={query}&type=product, and sitemap.xml for store metadata.
   humanURL: https://www.untuckit.com/agents.md
-  baseURL: https://www.untuckit.com
   tags:
   - Product
   - Catalog
@@ -103,6 +105,9 @@ apis:
   properties:
   - type: Documentation
     url: https://www.untuckit.com/agents.md
+  x-surface: platform-generated
+  x-platform: shopify
+  x-platform-surface: storefront-json
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
